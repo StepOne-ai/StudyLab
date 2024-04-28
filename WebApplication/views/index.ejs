@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="index.css" rel="stylesheet">
+    <title>StudyLab отзывы</title>
+</head>
+<body>
+    <div class="form-style-5" id="loginForm">
+        <form method="post">
+            <legend><span class="number">SL</span>Оставьте отзыв</legend><br>
+            <input type="text" name="name" id="name" placeholder="Ваше имя *">
+            <input type="text" name="username" id="username" placeholder="Ваш ник в телеграмме (без @) *">
+            <textarea id="comment" name="comment" placeholder="Отзыв"></textarea>
+            <input type ="submit" value="Отправить" />
+        </form>
+    </div>
+
+    <div id="commentSection">
+
+    <% if (result.users.length > 0) { %>
+        <% for(var i = 0; i < result.users.length; i++) { %>
+            <% if (result.users[i] != "") { %>
+                <div class="container twitter-card">
+                    <div class="header">
+                        <img src="studylab.jpg" alt="" class="user-icon">
+                        <div class="user">
+                            <div class="name"><%= result.users[i] %></div>
+                            <div class="userName"><a href="https://t.me/<%= result.usernames[i] %>">@<%= result.usernames[i] %></a></div>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <p><%= result.comments[i] %></p>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+    <% } %>
+<!-- 
+        <div class="container twitter-card">
+            <div class="header">
+                <img src="studylab.jpg" alt="" class="user-icon">
+                <div class="user">
+                    <div class="name">CodeWithAr</div>
+                    <div class="userName">@codewithar</div>
+                </div>
+            </div>
+            <div class="center">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio.</p>
+            </div>
+        </div> -->
+
+
+    </div>
+    <!-- <script>
+        let loginForm = document.getElementById("loginForm");
+
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let name = document.getElementById("name");
+            let username = document.getElementById("username");
+            let comment = document.getElementById("comment");
+
+            if (username.value == "" || name.value == "" || comment.value == "") {
+                alert("Вы не заполнили форму!");
+            } else {
+                let commentSection = document.getElementById("commentSection");
+                commentSection.innerHTML += 
+                `<div class="container twitter-card">
+                    <div class="header">
+                        <img src="studylab.jpg" alt="" class="user-icon">
+                        <div class="user">
+                            <div class="name">${name.value}</div>
+                            <div class="userName"><a href="https://t.me/${username.value}">@${username.value}</a></div>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <p>${comment.value}</p>
+                    </div>
+                </div>`;
+            }
+            username.value = "";
+            name.value = "";
+            comment.value = "";
+        });
+    </script> -->
+
+</body>
+</html>
